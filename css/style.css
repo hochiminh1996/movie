@@ -1,14 +1,141 @@
 
-/* *{
+*{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-} */
+}
 
 :root{
-    --bg-color: #ccc;
+    --bg-color: #e8e8e8;
 }
 
 body{
     background-color: var(--bg-color);
+}
+
+/* navbar header */
+.navbar-brand{
+    position: relative;
+}
+
+#logo{
+    width: 50px;
+}
+
+#moviestar-title{
+    position: absolute;
+    color: #fff;
+    font-weight: bold;
+    font-size: 30px;
+    bottom: -2px;
+    left: 55px;
+}
+
+#main-navbar{
+    background-color: #121212;
+}
+
+#search-form{
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 5px;
+    width: 50%;
+    margin-left: 180px;
+
+}
+
+#search-form .form-control{
+    border:none;
+    width: 90%;
+    outline: none;
+}
+
+#navbar{
+    /* border:1px solid red; */
+    min-width: 30%;
+}
+
+.navbar-nav{
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.navbar-nav .nav-item .nav-link{
+    color: #fff;
+}
+
+.navbar-nav .nav-item .nav-link:hover{
+    color: #999;
+    transition: all linear .5s;
+
+}
+
+.bold{
+    font-weight: bold;
+}
+
+/* home main */
+#main-container{
+    background-color: #000;
+    min-height: 65vh;
+    color: #fff;
+    padding: 40px;
+}
+
+
+/* footer */
+#footer{
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    /* border: 1px solid red; */
+}
+
+#social-container ul,
+#footer-links-container ul{
+    list-style:none;
+    padding: 0;
+}
+
+#social-container li,
+#footer-links-container li{
+    display: inline-block;
+    margin: 0 20px;
+}
+
+#social-container li{
+    height: 40px;
+    width: 40px;
+    line-height: 3;
+    opacity: .5;
+}
+
+#social-container li:hover{
+    opacity: 1;
+    background-color: #333;
+    transition: .5s;
+    border-radius: 50%;
+    transform: scale(1.2);
+}
+
+
+#footer-links-container a, #footer p > a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#footer-links-container a:hover, #footer p > a:hover{
+    color: #0056B3;
+}
+
+/* icones do font awesome */
+#social-container li i{
+    font-size: 25px;
+}
+
+#footer-links-container{
+    /* border:1px solid red; */
+    margin: 30px 0px;
 }

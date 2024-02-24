@@ -46,7 +46,7 @@ include_once("db.php");
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="<?= $BASE_URL ?>auth.php" class="nav-link">Entrar/Cadastrar</a>
+                        <a class="nav-link" href="<?= $BASE_URL?>auth.php" class="nav-link">Entrar/Cadastrar</a>
                     </li>
 
                 </ul>
@@ -58,9 +58,9 @@ include_once("db.php");
         <h1>Corpo</h1>
     </div>
 
-    <!-- footer -->
+    <!-- footer - adicionando os icones do font awesome-->
     <footer id="footer">
-        <div class="social-container">
+        <div id="social-container">
             <ul>
                 <li>
                     <a href="#">
@@ -68,13 +68,18 @@ include_once("db.php");
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="https://www.instagram.com/anomia.garbosa/" target="_blank">
                         <i class="fab fa-instagram"></i>
                     </a>
                 </li>
                 <li>
                     <a href="#">
                         <i class="fab fa-youtube"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="fab fa-linkedin"></i>
                     </a>
                 </li>
             </ul>
@@ -88,7 +93,7 @@ include_once("db.php");
             </ul>
         </div>
 
-        <p>&copy;2024 - Felippe Marques</p>
+        <p>&copy;2024 - <a href="https://www.linkedin.com/in/felippe-marques-dev/" target="_blank">Felippe Marques</a></p>
     </footer>
     <!-- boostrap js  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
