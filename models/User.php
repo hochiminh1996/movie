@@ -15,7 +15,7 @@
     // interface definindo os métodos que deverão ser implementados na DAO
     interface UserDAOInterface{
         public function buildUser($data);
-        // construir o objeto
+        // construir o objeto com base em dados fornecidos. O $data será um array
 
         public function create(User $user, $authUser = false);
         
