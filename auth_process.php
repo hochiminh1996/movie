@@ -35,6 +35,7 @@
 
         // verificação de dados mínimos
         if($name && $lastname && $email &&  $password){
+            echo "caouaqu";
 
         }else{
             // msg de erro : dados faltantes

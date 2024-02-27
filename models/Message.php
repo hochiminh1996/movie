@@ -30,11 +30,22 @@
         }
 
         public function getMessage(){
+          // se tiver mensagem
+          if(!empty($_SESSION['msg'])){
+            return [
+              "msg" =>  $_SESSION['msg'],
+              "type" => $_SESSION['type']
+            ];
+          }else{
+            // se não tiver msg na session
+              return false;
+          }
 
         }
 
         public function clearMessage(){
-
+          $_SESSION['msg'] = "";
+          $_SESSION['type'] = "";
         }
     }
 

@@ -1,8 +1,18 @@
 <?php
-include_once("globals.php");
-include_once("db.php");
+    include_once("globals.php");
+    include_once("db.php");
+    include_once("models/Message.php");
 
-$flassMessage = [];
+    $message  = new Message($BASE_URL);
+    //instancia de msg
+
+    $flassMessage = $message->getMessage();//recuperando a msg
+
+    // se já tiver uma msg na session, ele irá limpar. Caso contrário, ele seguirá o fluxo de execução. Lá auth_process, se usuário provocar um erro, irá mostrar irá criar uma session com o erro
+    if(!empty($flassMessage['msg'])){
+        // limpar msg
+        $message->clearMessage();
+    }
 
 
 ?>
