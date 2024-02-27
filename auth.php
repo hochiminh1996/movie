@@ -24,7 +24,8 @@ include_once("templates/header.php");
 
             <div class="col-md-4" id="register-container">
                 <h2>Criar Conta</h2>
-                <form action="" method="post">
+                <form action="<?=$BASE_URL?>auth_process.php" method="post">
+                <!-- observe que os dados serão direcionados para o arquivo auth_process -->
                     <input type="hidden" value="register" name="type">
                     <div class="form-group">
                         <label for="email_register">E-mail:</label>
