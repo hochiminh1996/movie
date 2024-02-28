@@ -48,7 +48,29 @@ DE NEGÓCIOS. -->
         public function authenticateUser($email, $password){}
 
         // localizando user por email
-        public function findByEmail($email){}
+        public function findByEmail($email){
+            if($email!=""){
+                $stmt = $this->conn->prepare("SELECT * from users WHERE email = :email");
+                $stmt->bindParam(":email", $email);
+                $stmt->execute();
+
+                if($stmt->rowCount()>0){
+                    // achou usuário
+                    $data = $stmt->fetch();//pegando um resultado encontrado
+                    $user = $this->buildUser($data);//chamando a função que constroi um usuário com base nos registros encontrados no bd
+
+                    return $user;
+                }else{
+                    // não achou
+                    return false;
+                }
+
+
+
+            }else{
+                return false;
+            }
+        }
 
         public function findById($id){}
 

@@ -18,6 +18,9 @@
     // instanciando a classe msg
     $message = new Message($BASE_URL);
 
+    // instanciando dao
+    $userDao = new UserDAO($conn, $BASE_URL);
+
 
     // verificando qual seção o formulário está processando.
     // Vai resgatar aquele input do tipo hidden, que tenha um name = type. Nesse caso, iremos saber se está vindo um value register ou login.
@@ -35,12 +38,24 @@
 
         // verificação de dados mínimos
         if($name && $lastname && $email &&  $password){
-            // verificando se as senhas batem
-
+            
             if($password === $confirmpassword){
-                echo "ok";
+                // verificando se as senhas batem
+                if(strlen($password) >= 8 && strlen($confirmpassword)){
+                   // verificando se tem 8 caracteres
+                    if($userDao->findByEmail($email) === false){
+                         // Se for false, é possível criar o usuário com este email
+                    }else{
+                        // usuário já existe
+                        $message->setMessage("Usuário já cadastrado, tente outro e-mail.", "error", "back");
+                    }
+
+                }else{
+                    $message->setMessage("Senha: mínimo 8 caracteres.", "error", "back");
+                }
+                
             }else{
-                $message->setMessage("As senhas não são iguais...", "error", "back");
+                $message->setMessage("As senhas não são iguais.", "error", "back");
             }
 
         }else{
