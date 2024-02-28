@@ -35,7 +35,13 @@
 
         // verificação de dados mínimos
         if($name && $lastname && $email &&  $password){
-            echo "caouaqu";
+            // verificando se as senhas batem
+
+            if($password === $confirmpassword){
+                echo "ok";
+            }else{
+                $message->setMessage("As senhas não são iguais...", "error", "back");
+            }
 
         }else{
             // msg de erro : dados faltantes
