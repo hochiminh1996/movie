@@ -2,6 +2,7 @@
     include_once("globals.php");
     include_once("db.php");
     include_once("models/Message.php");
+    include_once("dao/UserDAO.php");
 
     $message  = new Message($BASE_URL);
     //instancia de msg
@@ -13,6 +14,10 @@
         // limpar msg
         $message->clearMessage();
     }
+
+    $userDao = new UserDAO($conn, $BASE_URL);
+    $userData = $userDao->verifyToken(false);
+
 
 
 ?>
@@ -58,9 +63,38 @@
             <!-- essa div será afetada pelo jquery -->
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="navbar-nav">
+                    <?php 
+                        // se tiver dados
+                        if($userData):
+                    ?>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= $BASE_URL ?>newmovie.php" class="nav-link"><i class="far fa-plus-square"></i> Incluir Filme</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= $BASE_URL ?>dashboard.php" class="nav-link">Meus Filmes</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= $BASE_URL ?>editprofile.php" class="nav-link bold">
+                            <?= 
+                                $userData->name;
+                            ?>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= $BASE_URL ?>logout.php" class="nav-link bold">Sair
+                        </a>
+                    </li>
+                    <?php else:?>
+
+                    <!-- SE NÃO TIVER SESSÃO, ELE MOSTRA ESSA NAVBAR DE ENTRAR/CADASTRAR -->
                     <li class="nav-item">
                         <a class="nav-link" href="<?= $BASE_URL ?>auth.php" class="nav-link">Entrar/Cadastrar</a>
                     </li>
+                    <?php endif;?>
 
                 </ul>
             </div>

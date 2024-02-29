@@ -46,7 +46,7 @@
                     if($userDao->findByEmail($email) === false){
                          // Se for false, é possível criar o usuário com este email
 
-                         $user = new User();
+                        $user = new User();
 
                         //  criação de token único
                         $userToken = $user->generateToken();

@@ -21,7 +21,7 @@ DE NEGÓCIOS. -->
         }
 
 
-         // construir o objeto de usuário
+         // construir o objeto de usuário com base nos dados do banco
         public function buildUser($data){
             $user = new User(); //instanciando um obj User com base no model/User
             $user->id = $data['id'];//acessando as props do objeto user e passando dados
@@ -62,7 +62,25 @@ DE NEGÓCIOS. -->
         public function update(User $user){}
 
         // verificando token
-        public function verifyToken($protected = false){}
+        public function verifyToken($protected = false){
+            if(!empty($_SESSION['token'])){
+                // pega o token da session
+                $token = $_SESSION['token'];
+
+                $user = $this->findByToken($token);//verifica se o token é valido ou seja, existente. Retorna um objeto se localizar 
+
+                if($user){//se for encontrado
+                    return $user;
+                }else if($protected){
+                    // redireciona user n autenticado. Se o usuário não for encontrado com base no token
+                    $this->message->setMessage("Faça a autentificação para acessar essa página", "error", "index.php");
+                }
+
+            }else if($protected){
+                // se cair aqui, a sessão token está vazia e significa que o user está tentando bular a url.
+                $this->message->setMessage("Faça a autentificação para acessar essa página...", "error", "index.php");
+            }
+        }
 
         // login / redirect é para redirecionar
         public function setTokenToSession($token, $redirect = true, $name){
@@ -107,9 +125,37 @@ DE NEGÓCIOS. -->
         public function findById($id){}
 
         // localizando por token
-        public function findByToken($token){}
+        public function findByToken($token){
+            if(!empty($token)){
+                $stmt = $this->conn->prepare("SELECT * FROM users where token=:token");
+
+                $stmt->bindParam(":token", $token);
+                $stmt->execute();
+
+                if($stmt->rowCount()>0){
+                    $data = $stmt->fetch();
+                    $user = $this->buildUser($data);
+
+                    return $user;
+                }else{
+                    return false;
+                }
+
+            }else{
+                return false;
+            }
+        }
 
         public function changePassword(User $user){}
+
+        public function destroyToken(){
+            // remove o token da sessão
+            $_SESSION['token'] = "";
+
+            // redirecionar
+            $this->message->setMessage("Logout com sucesso.", "sucess", "index.php");
+
+        }
 
     }
     
