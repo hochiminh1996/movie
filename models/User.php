@@ -42,7 +42,7 @@
         public function verifyToken($protected = false);
 
         // login / redirect é para redirecionar
-        public function setTokenToSession($tolen, $redirect = true);
+        public function setTokenToSession($tolen, $redirect = true, $name);
 
         public function authenticateUser($email, $password);
 

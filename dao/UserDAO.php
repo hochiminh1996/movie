@@ -5,16 +5,19 @@ DE NEGÓCIOS. -->
 
 <?php 
     require_once("models/User.php");
+    require_once("models/Message.php");
 
     class UserDAO implements UserDAOInterface{
         private $conn; //conexão do banco
         private $url; // url : BASE URL
+        private $message;
 
         // inicializando
         public function __construct(PDO $conn, $url)
         {
             $this->conn = $conn;
             $this->url = $url;
+            $this->message = new Message($url);
         }
 
 
@@ -33,8 +36,27 @@ DE NEGÓCIOS. -->
             return $user; //retornando o objeto criado
         }
        
+        // criando user no banco
+        public function create(User $user, $authUser = false){
 
-        public function create(User $user, $authUser = false){}
+            $stmt = $this->conn->prepare("INSERT INTO users(name, lastname, email, password, token)VALUES(:name,:lastname,:email, :password, :token)");
+            
+            $stmt->bindParam(":name", $user->name);
+            $stmt->bindParam(":lastname", $user->lastname);
+            $stmt->bindParam(":email", $user->email);
+            $stmt->bindParam(":password", $user->password);
+            $stmt->bindParam(":token", $user->token);
+            
+            $stmt->execute();
+
+
+            // autentificar user
+            if($authUser){
+                $this->setTokenToSession($user->token, TRUE, $user->name);
+                // Armazenando o token em sessão, mandando a autentificação true e o nome do usuario
+            }
+
+        }
         
         // atualizando usuário
         public function update(User $user){}
@@ -43,7 +65,17 @@ DE NEGÓCIOS. -->
         public function verifyToken($protected = false){}
 
         // login / redirect é para redirecionar
-        public function setTokenToSession($tolen, $redirect = true){}
+        public function setTokenToSession($token, $redirect = true, $name){
+            // salvar token na sessão
+            $_SESSION['token'] = $token;
+
+            // redirecionar o usuário
+            var_dump($redirect);
+            if($redirect){
+                // redireciona para o perfil
+                $this->message->setMessage("Seja bem vindo, $name", "sucess", "editprofile.php");
+            }
+        }
 
         public function authenticateUser($email, $password){}
 

@@ -64,7 +64,6 @@
                         $auth = true; //autentificação verdadeira para a criação do userDAO, lá na função create($user, authuser)
 
                         $userDao->create($user, $auth);
-                        // criando 
                         
                         
                     }else{
