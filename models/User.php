@@ -9,6 +9,19 @@
         public $bio;
         public $token;
 
+
+        public function generateToken(){
+            // A função bin2hex converte dados binários (não precisa necessariamente ser binario, pode ser strings) em uma representação hexadecimal. No exemplo abaixo, ele cria uma string alaetória de 50 caracteres e depois converte para hex. Ou seja, não haverá a possibilidade de gerar dois token iguais.
+           return bin2hex(random_bytes(50));     
+        }
+
+        public function generatePassword($password){
+            return password_hash($password, PASSWORD_DEFAULT);
+            // vai criar um hash de senha com base na senha informada pelo usuário. PASSWORD_DEFAULT é o tipo de hash padrão do php
+
+            // A função password_hash  é usada para criar um hash de senha segura usando um algoritmo de hash de senha forte
+        }
+
     }
 
 

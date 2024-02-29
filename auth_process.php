@@ -45,6 +45,28 @@
                    // verificando se tem 8 caracteres
                     if($userDao->findByEmail($email) === false){
                          // Se for false, é possível criar o usuário com este email
+
+                         $user = new User();
+
+                        //  criação de token único
+                        $userToken = $user->generateToken();
+
+                        // criando uma senha
+                        $finalPassword = $user->generatePassword($password);
+
+                        // montando o objeto
+                        $user->name = $name;
+                        $user->lastname = $lastname;
+                        $user->email = $email;
+                        $user->password = $finalPassword;//password final
+                        $user->token = $userToken;
+
+                        $auth = true; //autentificação verdadeira para a criação do userDAO, lá na função create($user, authuser)
+
+                        $userDao->create($user, $auth);
+                        // criando 
+                        
+                        
                     }else{
                         // usuário já existe
                         $message->setMessage("Usuário já cadastrado, tente outro e-mail.", "error", "back");
