@@ -20,6 +20,9 @@
             // vai criar um hash de senha com base na senha informada pelo usuário. PASSWORD_DEFAULT é o tipo de hash padrão do php
 
             // A função password_hash  é usada para criar um hash de senha segura usando um algoritmo de hash de senha forte
+
+
+            // Um hash é uma função matemática que transforma dados de entrada (como uma string de texto ou um arquivo) em uma sequência de caracteres alfanuméricos de tamanho fixo, geralmente representada como uma sequência hexadecimal. 
         }
 
     }
