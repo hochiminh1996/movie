@@ -6,9 +6,12 @@ include_once("templates/header.php");
         <div class="row" id="auth-row">
             <div class="col-md-4" id="login-container">
                 <h2>Entrar</h2>
-                <input type="hidden" value="login" name="type">
-                <!-- para identificar o tipo de dado que está sendo enviado. Por isso usamos esse campo hidden. Inclusive, estamos utilizando-o no registrar -->
-                <form action="" method="post">
+                
+                <form action="<?=$BASE_URL?>auth_process.php" method="post">
+
+                    <input type="hidden" value="login" name="type">
+                    <!-- para identificar o tipo de dado que está sendo enviado. Por isso usamos esse campo hidden. Inclusive, estamos utilizando-o no registrar -->
+                    
                     <div class="form-group">
                         <label for="email">E-mail:</label>
                         <input type="email" class="form-control" placeholder="Digite seu e-mail" id="email" name="email">

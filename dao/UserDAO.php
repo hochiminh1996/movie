@@ -59,7 +59,9 @@ DE NEGÓCIOS. -->
         }
         
         // atualizando usuário
-        public function update(User $user){}
+        public function update(User $user){
+            
+        }
 
         // verificando token
         public function verifyToken($protected = false){
@@ -88,14 +90,44 @@ DE NEGÓCIOS. -->
             $_SESSION['token'] = $token;
 
             // redirecionar o usuário
-            var_dump($redirect);
             if($redirect){
                 // redireciona para o perfil
                 $this->message->setMessage("Seja bem vindo, $name", "sucess", "editprofile.php");
             }
         }
 
-        public function authenticateUser($email, $password){}
+        public function authenticateUser($email, $password){
+            $user = $this->findByEmail($email);
+            // verifica se existe um e-mail. Se existir, retorna um objeto do banco com todos os dados, ou seja, um true. Se não existir, retorna false
+          
+            if($user){
+                //o retorno de um objeto é equivalente ao true na condição
+                // verificar senhas
+
+                if(password_verify($password, $user->password)){
+                     // password_verify é um algoritmo que verifica as hash. Passamos a senha digitada e compara com o banco
+                    
+                    //gerar token
+                    $token = $user->generateToken();
+                    $this->setTokenToSession($token, true, $user->name);
+
+                    // atualizar token no usuario
+                    $user->token = $token;
+
+                    $this->update($user);//atualizar
+
+                    return true;
+
+
+                }else{
+                    return false;
+                } 
+            }else{
+                return false;
+            }
+    
+
+        }
 
         // localizando user por email
         public function findByEmail($email){
@@ -114,8 +146,6 @@ DE NEGÓCIOS. -->
                     // não achou
                     return false;
                 }
-
-
 
             }else{
                 return false;

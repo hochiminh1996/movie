@@ -7,7 +7,7 @@
     $message  = new Message($BASE_URL);
     //instancia de msg
 
-    $flassMessage = $message->getMessage();//recuperando a msg
+    $flassMessage = $message->getMessage();//recuperando a msg. Retorna um array com o tipo de erro/sucesso e a mensagem
 
     // se já tiver uma msg na session, ele irá limpar. Caso contrário, ele seguirá o fluxo de execução. Lá auth_process, se usuário provocar um erro, irá mostrar irá criar uma session com o erro
     if(!empty($flassMessage['msg'])){

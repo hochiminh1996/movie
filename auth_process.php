@@ -86,9 +86,23 @@
        
         
     }else if($type === "login"){
-        // login
+        // autentificar o usuário
+
         $email = filter_input(INPUT_POST, "email");
         $password = filter_input(INPUT_POST, "password");
+
+        
+        if($userDao->authenticateUser($email, $password)){
+            
+            
+
+        }else{
+            // redirecionar se não conseguir autentificar
+            $message->setMessage("Usuário e/ou senha incorretos.", "error", "back");
+            
+        }
+    }else{
+        $message->setMessage("Acesso inválido.", "error", "index.php");
     }
 
     
