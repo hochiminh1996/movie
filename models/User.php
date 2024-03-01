@@ -25,6 +25,10 @@
             // Um hash é uma função matemática que transforma dados de entrada (como uma string de texto ou um arquivo) em uma sequência de caracteres alfanuméricos de tamanho fixo, geralmente representada como uma sequência hexadecimal. 
         }
 
+        public function getFullName($user){
+            return $user->name. " ". $user->lastname;
+        }
+
     }
 
 

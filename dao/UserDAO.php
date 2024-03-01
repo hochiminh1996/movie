@@ -98,7 +98,7 @@ DE NEGÓCIOS. -->
                 $user = $this->findByToken($token);//verifica se o token é valido ou seja, existente. Retorna um objeto se localizar 
 
                 if($user){//se for encontrado
-                    return $user;
+                    return $user;//retorna um objeto
                 }else if($protected){
                     // redireciona user n autenticado. Se o usuário não for encontrado com base no token
                     $this->message->setMessage("Faça a autentificação para acessar essa página", "error", "index.php");
