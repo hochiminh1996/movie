@@ -36,7 +36,7 @@
         public function create(User $user, $authUser = false);
         
         // atualizando usuário
-        public function update(User $user);
+        public function update(User $user,  $redirect);
 
         // verificando token
         public function verifyToken($protected = false);

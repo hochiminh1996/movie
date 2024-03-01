@@ -59,12 +59,38 @@ DE NEGÓCIOS. -->
         }
         
         // atualizando usuário
-        public function update(User $user){
-            
+        public function update(User $user, $redirect = true){
+            $stmt = $this->conn->prepare("UPDATE users SET 
+                name = :name,
+                lastname = :lastname,
+                email = :email,
+                image = :image,
+                bio = :bio,
+                token= :token
+                WHERE id = :id
+            ");
+
+            $stmt->bindParam(":name",$user->name);
+            $stmt->bindParam(":lastname",$user->lastname);
+            $stmt->bindParam(":email",$user->email);
+            $stmt->bindParam(":image",$user->image);
+            $stmt->bindParam(":bio",$user->bio);
+            $stmt->bindParam(":token",$user->token);
+            $stmt->bindParam(":id",$user->id);
+
+            $stmt->execute();
+            $name = $user->name;
+
+            if($redirect){
+                // redireciona para o perfil
+                $this->message->setMessage("Seja bem vindo, $name", "sucess", "editprofile.php");
+            }
+
         }
 
         // verificando token
         public function verifyToken($protected = false){
+            // se protected vier como true, significa que ele tentou burlar
             if(!empty($_SESSION['token'])){
                 // pega o token da session
                 $token = $_SESSION['token'];
@@ -109,7 +135,7 @@ DE NEGÓCIOS. -->
                     
                     //gerar token
                     $token = $user->generateToken();
-                    $this->setTokenToSession($token, true, $user->name);
+                    $this->setTokenToSession($token, false, $user->name);
 
                     // atualizar token no usuario
                     $user->token = $token;
