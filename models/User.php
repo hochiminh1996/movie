@@ -44,6 +44,9 @@
 
         // verificando token
         public function verifyToken($protected = false);
+		// verifica o token do usuário, se é valido.
+        // O protected vem false como padrão. Porém, quisermos proteger a página, ou seja, permitir que ela seja acessada apenas se tiver logado, colocamos true.
+		
 
         // login / redirect é para redirecionar
         public function setTokenToSession($tolen, $redirect = true, $name);

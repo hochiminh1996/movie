@@ -90,7 +90,7 @@ DE NEGÓCIOS. -->
 
         // verificando token
         public function verifyToken($protected = false){
-            // se protected vier como true, significa que ele tentou burlar
+            // O protected vem false como padrão. Porém, quisermos proteger a página, ou seja, permitir que ela seja acessada apenas se tiver logado, passamos true ao  chamar essa funçaõ.
             if(!empty($_SESSION['token'])){
                 // pega o token da session
                 $token = $_SESSION['token'];

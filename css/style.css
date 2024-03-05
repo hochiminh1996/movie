@@ -212,3 +212,20 @@ body{
     /* border:1px solid red; */
     margin: 30px 0px;
 }
+
+/* edição de perfil */
+#profile-image-container{
+    width: 150px;
+    height: 150px;
+    border: 6px solid #f5c518;
+    border-radius: 100%;
+    /* background-color: cover; */
+    background-position: center;
+    margin: 15px auto;
+    opacity: .7;
+}
+
+#profile-image-container:hover{
+    opacity: 1;
+    transition: all linear .5s;
+}

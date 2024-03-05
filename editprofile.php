@@ -6,7 +6,8 @@
     $userDao = new UserDAO($conn, $BASE_URL);
 
     $userData = $userDao->verifyToken(true);
-    // o argumento é true justamente para o caso do usuário tentar bular a url.Ou seja, não há uma sessão de token para autentificação. Retorna um objeto usuário se localizar
+    // estamos chamando verifyToken com true, porque queremos proteger essa página. Ao chamar essa função, e se não for encontrado a sessão de token, ele irá cair na condição onde $protected = true, que irá redirecionar. Afinal,  não há sessão disponível para acessar a página editprofile
+
 
     $user = new User();
     $fullName = $user->getFullName($userData);
@@ -61,6 +62,30 @@
                 </div>                
             </div>
         </form>
+
+        <!-- campo de senha -->
+        <div class="row" id="change-password-container">
+            <div class="col-md-4">
+                <h2>Alterar senha:</h2>
+                <p class="page-description">Digite a nota senha:</p>
+
+                <form action="<?=$BASE_URL?>user_process.php" method="post">
+                    <input type="hidden" name="type" value="changepassword">
+
+                    <div class="form-group">
+                        <label for="password">Senha:</label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Digite sua nova senha">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmpassword">Confirme sua senha:</label>
+                        <input type="password" id="confirmpassword" name="confirmpassword" class="form-control" placeholder="Confirme sua senha">
+                    </div>
+                    
+                    <input type="submit" class="btn form-btn" value="Alterar senha">
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
