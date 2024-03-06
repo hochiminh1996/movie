@@ -229,3 +229,19 @@ body{
     opacity: 1;
     transition: all linear .5s;
 }
+
+.page-description{
+    color: #999;
+}
+
+#bio{
+    max-width: 400px;
+}
+
+.form-control.disabled{
+    background-color: #bbb;
+}
+
+#change-password-container{
+    margin-top: 30px;
+}

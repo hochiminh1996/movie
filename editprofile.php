@@ -43,7 +43,7 @@
                         <input type="email" class="form-control disabled" name="email" id="email" value="<?=$userData->email?>" readonly>
                     </div>
 
-                    <input type="submit" class="btn form-btn" value="Alterar">
+                    <input type="submit" class="btn card-btn" value="Alterar">
                 </div>
 
                 <div class="col-md-4">
@@ -57,7 +57,7 @@
 
                     <div class="form-group">
                         <label for="bio">Sobre você:</label>
-                        <textarea name="bio" id="bio" rows="5" class="form-control" placeholder="Conte mais sobre você"></textarea>
+                        <textarea name="bio" id="bio" rows="5" class="form-control" placeholder="Conte mais sobre você"><?=$userData->bio?></textarea>
                     </div>
                 </div>                
             </div>
@@ -82,7 +82,7 @@
                         <input type="password" id="confirmpassword" name="confirmpassword" class="form-control" placeholder="Confirme sua senha">
                     </div>
                     
-                    <input type="submit" class="btn form-btn" value="Alterar senha">
+                    <input type="submit" class="btn card-btn" value="Alterar senha">
                 </form>
             </div>
         </div>

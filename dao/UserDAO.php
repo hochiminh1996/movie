@@ -36,7 +36,7 @@ DE NEGÓCIOS. -->
             return $user; //retornando o objeto criado
         }
        
-        // criando user no banco
+        //cria um usuário. O argumento $authUser é para quando o usuário se cadastrar, ele já logar em seguinda. Ele inicia como false
         public function create(User $user, $authUser = false){
 
             $stmt = $this->conn->prepare("INSERT INTO users(name, lastname, email, password, token)VALUES(:name,:lastname,:email, :password, :token)");
@@ -50,7 +50,7 @@ DE NEGÓCIOS. -->
             $stmt->execute();
 
 
-            // autentificar user
+            // autentificar caso o auth seja true
             if($authUser){
                 $this->setTokenToSession($user->token, TRUE, $user->name);
                 // Armazenando o token em sessão, mandando a autentificação true e o nome do usuario
@@ -83,7 +83,7 @@ DE NEGÓCIOS. -->
 
             if($redirect){
                 // redireciona para o perfil
-                $this->message->setMessage("Seja bem vindo, $name", "sucess", "editprofile.php");
+                $this->message->setMessage("Dados atualizados com sucesso.", "sucess", "editprofile.php");
             }
 
         }
