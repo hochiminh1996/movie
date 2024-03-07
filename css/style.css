@@ -220,7 +220,7 @@ body{
     border: 6px solid #f5c518;
     border-radius: 100%;
     /* background-color: cover; */
-    background-position: center;
+    background-position: center center;
     margin: 15px auto;
     opacity: .7;
 }

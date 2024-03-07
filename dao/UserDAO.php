@@ -84,6 +84,8 @@ DE NEGÓCIOS. -->
             if($redirect){
                 // redireciona para o perfil
                 $this->message->setMessage("Dados atualizados com sucesso.", "sucess", "editprofile.php");
+            }else{
+                $this->message->setMessage("Bem vindo, $name.", "sucess", "editprofile.php");
             }
 
         }
@@ -140,7 +142,8 @@ DE NEGÓCIOS. -->
                     // atualizar token no usuario
                     $user->token = $token;
 
-                    $this->update($user);//atualizar
+                    $this->update($user, false);//atualizar
+                  
 
                     return true;
 
