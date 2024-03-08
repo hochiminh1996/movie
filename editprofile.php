@@ -71,9 +71,7 @@
 
                 <form action="<?=$BASE_URL?>user_process.php" method="post">
                     <input type="hidden" name="type" value="changepassword">
-                    <input type="hidden" name="id" value="<?=$userData->id?>">
-                    <!-- passando id para que possamos saber qual user está modificando -->
-
+                   
                     <div class="form-group">
                         <label for="password">Senha:</label>
                         <input type="password" id="password" name="password" class="form-control" placeholder="Digite sua nova senha">

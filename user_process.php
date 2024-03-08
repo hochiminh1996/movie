@@ -102,19 +102,24 @@
         // atualizando senha
         $password = filter_input(INPUT_POST, "password");
         $confirmpassword = filter_input(INPUT_POST, "confirmpassword");
-        $id = filter_input(INPUT_POST, "id");
 
+        $userData = $userDao->verifyToken();
+        // Resgatando os dados do usuário se o token for verdadeiro. Retorna uma objeto
+        $id = $userData->id;
 
         if($password === $confirmpassword){
             if(strlen($password) >=8 && strlen($confirmpassword) >=8){
                 
-                $user = new User();
-                $passwordProtected = $user->generatePassword($password);
-                $user->id = $id;
+                $user = new User();//criando um obj usuário para manipular alguns atributos para depois passar para a função de modificação de senha
 
-                $user->password = $passwordProtected;
+                $passwordProtected = $user->generatePassword($password);
+                // gerando uma senha criptografada
                 
+                $user->password = $passwordProtected;//setando o senha no objt
+                $user->id = $id;//setando o id no objeto
+
                 $userDao->changePassword($user);
+                // passando o objeto para uma função ue irá realizar a modificação no banco
                 
                 
             }else{
