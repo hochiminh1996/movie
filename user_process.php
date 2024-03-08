@@ -65,12 +65,10 @@
                 if(in_array($image['type'], $jpgArray)){
                    
                     $imageFile = imagecreatefromjpeg($image['tmp_name']);
-                    // A função imagecreatefromjpeg() cria uma imagem PHP a partir de um arquivo JPEG existente (o arquivo que veio na superglobal), ou seja, ela cria uma representação interna da imagem no PHP que pode ser manipulada. Essa função não cria um arquivo de imagem no disco.
+                    // A função imagecreatefromjpeg() cria uma imagem PHP a partir de um arquivo JPEG existente (o arquivo que veio na superglobal), ou seja, ela cria uma representação interna da imagem no PHP que pode ser manipulada. 
                    
 
-                }else{
-                    // image png
-                    
+                }else{                    
                     $imageFile = imagecreatefrompng($image["tmp_name"]);
                     // criando uma imagem do tipo png
                 }
@@ -104,6 +102,30 @@
         // atualizando senha
         $password = filter_input(INPUT_POST, "password");
         $confirmpassword = filter_input(INPUT_POST, "confirmpassword");
+        $id = filter_input(INPUT_POST, "id");
+
+
+        if($password === $confirmpassword){
+            if(strlen($password) >=8 && strlen($confirmpassword) >=8){
+                
+                $user = new User();
+                $passwordProtected = $user->generatePassword($password);
+                $user->id = $id;
+
+                $user->password = $passwordProtected;
+                
+                $userDao->changePassword($user);
+                
+                
+            }else{
+                $message->setMessage("Alterar Senha: é necessário no mínimo 8 caracteres.", "error", "back");
+            }
+        }else{
+            $message->setMessage("Alterar Senha: as senhas não combinam.", "error", "back");
+        }
+
+
+
         var_dump($_POST);
     }else{
         $message->setMessage("Informações inválidas", "error", "index.php");
