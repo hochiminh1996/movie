@@ -130,23 +130,25 @@ DE NEGÓCIOS. -->
           
             if($user){
                 //o retorno de um objeto é equivalente ao true na condição
+                
                 // verificar senhas
-
                 if(password_verify($password, $user->password)){
                      // password_verify é um algoritmo que verifica as hash. Passamos a senha digitada e compara com o banco
                     
-                    //gerar token
+                    //gerar token um novo token
                     $token = $user->generateToken();
-                    $this->setTokenToSession($token, false, $user->name);
 
-                    // atualizar token no usuario
+                    // joga o token na sessão
+                    $this->setTokenToSession($token, false, $user->name);
+                    
+                    // seta o token no objeto usuário
                     $user->token = $token;
 
-                    $this->update($user, false);//atualizar
-                  
-
+                    // atualiza o novo token do usuário no banco
+                    // $this->update($user, false);//atualizar 
+                    $this->updateToken($user);                 
+                   
                     return true;
-
 
                 }else{
                     return false;
@@ -224,6 +226,21 @@ DE NEGÓCIOS. -->
             // redirecionar
             $this->message->setMessage("Logout com sucesso.", "sucess", "index.php");
 
+        }
+
+        public function updateToken(User $user){
+            
+            $stmt = $this->conn->prepare("UPDATE users SET token =:token WHERE id=:id");
+            $stmt->bindParam(":token", $user->token);
+            
+            $stmt->bindParam(":id", $user->id);
+            $stmt->execute();
+
+            $name = $user->name;
+            
+            $this->message->setMessage("Bem vindo, $name", "sucess", "editprofile.php");            
+
+            return true;
         }
 
     }

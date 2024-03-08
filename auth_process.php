@@ -92,9 +92,8 @@
         $password = filter_input(INPUT_POST, "password");
 
         
-        if($userDao->authenticateUser($email, $password)){
-            
-            
+        if($userDao->authenticateUser($email, $password)){  
+               
 
         }else{
             // redirecionar se não conseguir autentificar
