@@ -27,7 +27,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>MovieStar</title>
+    <title>Movie</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="<?= $BASE_URL ?>image/moviestar.ico" type="image/x-icon">
 
@@ -47,7 +47,7 @@
         <nav id="main-navbar" class="navbar navbar-expand-lg">
             <a href="<?= $BASE_URL ?>" class="navbar-brand">
                 <img src="<?= $BASE_URL ?>image/logo.svg" alt="x" id="logo">
-                <span id="moviestar-title">MovieStar</span>
+                <span id="moviestar-title">Movie</span>
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
