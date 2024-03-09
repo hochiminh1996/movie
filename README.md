@@ -13,3 +13,13 @@ As funcionalidades-chave englobam o cadastro de usuários, autenticação, gest�
 <p align="justify">
 A estrutura de código adota padrões e princípios como MVC, orientação a objetos e o padrão DAO, visando a manutenção e escalabilidade do sistema. As tecnologias empregadas incluem PHP para a lógica de negócios, MySQL para armazenamento de dados e HTML/CSS para a interface do usuário.
 </p>
+
+<h2>Tela de login/register</h2>
+
+![Login/register](https://github.com/hochiminh1996/movie/blob/master/image/login.png)
+
+<h2>Área básica de modificações de perfil</h2>
+
+![Login/register](https://github.com/hochiminh1996/movie/blob/master/image/profile.png)
+
+
