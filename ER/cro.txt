@@ -1,0 +1,8 @@
+1 - front
+2 - model de user/movie
+3 - Dao de user/movie
+4 - process_ de user e movie 
+
+Dao de user e movie irá cuidar da persistência de dados. Separando lógica de negócio da lógica de acesso a dados.
+
+process_ irá cuidar das validações dos forms, construindo objetos e acessando dados, inserindo e buscando dados via Dao

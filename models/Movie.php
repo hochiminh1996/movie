@@ -15,7 +15,7 @@ class Movie{
     }
 }
 
-// interface que manda no DAO
+// interface que irá controlar o DAO. Esboço de métodos abaixo deverá ser implementados na classe DAO.
 interface MovieDaoInterface{
     // construindo um objeto de movie com base nos dados recebidos
     public function buildMovie($data);
