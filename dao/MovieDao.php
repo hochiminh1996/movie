@@ -2,7 +2,7 @@
     include_once("models/Movie.php");//nossa classe principal
     include_once("models/Message.php");// classe voltada para mensagens de erro
 
-    class Movie implements MovieDaoInterface{
+    class MovieDao implements MovieDaoInterface{
         // construindo um objeto de movie com base nos dados recebidos
 
         private $url;
