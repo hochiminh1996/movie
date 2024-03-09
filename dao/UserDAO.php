@@ -197,9 +197,9 @@ DE NEGÓCIOS. -->
                     $data = $stmt->fetch();
                     $user = $this->buildUser($data);
 
-                    return $user;
+                    return $user;//retorna um objeto de usuário com base no token
                 }else{
-                    return false;
+                    return false;// significa que o token passado é inválido
                 }
 
             }else{

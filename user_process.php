@@ -104,8 +104,9 @@
         $confirmpassword = filter_input(INPUT_POST, "confirmpassword");
 
         $userData = $userDao->verifyToken();
-        // Resgatando os dados do usuário se o token for verdadeiro. Retorna uma objeto
+        // Resgatando os dados do usuário, com base no token de sessão. Retorna uma objeto
         $id = $userData->id;
+
 
         if($password === $confirmpassword){
             if(strlen($password) >=8 && strlen($confirmpassword) >=8){
