@@ -10,6 +10,11 @@ class Movie{
     public $length;
     public $users_id;
 
+    public function __construct()
+    {
+        
+    }
+
     public function imageGenerateName(){
         return bin2hex(random_bytes(60)). "jpg";
     }

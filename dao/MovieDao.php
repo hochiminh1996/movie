@@ -16,9 +16,20 @@
             $this->message = new Message($url);
         }
 
-
+        // construindo um objeto de movie com base nos dados do array de dados
         public function buildMovie($data){
+            $movie = new Movie();    
 
+            $movie->id = $data['id'];
+            $movie->title = $data['title'];
+            $movie->description = $data['description'];
+            $movie->image = $data['image'];
+            $movie->trailer = $data['trailer'];
+            $movie->category = $data['category'];
+            $movie->length = $data['length'];
+            $movie->users_id = $data['users_id'];
+
+            return $movie;
         }
 
         // pega todos os filmes do banco
