@@ -62,9 +62,25 @@
 
         }
 
-        // registrando um filme
+        // registrando um filme no banco
         public function create(Movie $movie){
+            $stmt = $this->conn->prepare("INSERT INTO movies(title, description, image, trailer,category, length, users_id)VALUES(
+                :title, :description, :image, :trailer, :category, :length, :users_id
+            )");
 
+            $stmt->bindParam(":title", $movie->title);
+            $stmt->bindParam(":description", $movie->description);
+            $stmt->bindParam(":image", $movie->image);
+            $stmt->bindParam(":trailer", $movie->trailer);
+            $stmt->bindParam(":category", $movie->title);
+            $stmt->bindParam(":length", $movie->length);
+            $stmt->bindParam(":users_id", $movie->users_id);
+
+            $stmt->execute();
+
+            if($stmt->rowCount()>0){
+                $this->message->setMessage("Filme registrado com sucesso", "sucess", "index.php");
+            }
         }
         
         // atualizando um filme

@@ -108,6 +108,7 @@ DE NEGÓCIOS. -->
 
             }else if($protected){
                 // se cair aqui, a sessão token está vazia e significa que o user está tentando bular a url.
+
                 $this->message->setMessage("Faça a autentificação para acessar essa página...", "error", "index.php");
             }
         }

@@ -23,7 +23,7 @@
     $movieDao = new MovieDao($conn, $BASE_URL);
     $userDao = new UserDAO($conn, $BASE_URL);
 
-    $userData = $userDao->verifyToken();
+    $userData = $userDao->verifyToken(true);
     // verificando se há uma sessão de token
 
     // analisando o campo hidden
@@ -35,16 +35,20 @@
         $trailer = filter_input(INPUT_POST, "trailer");
         $description = filter_input(INPUT_POST, "description");
 
-        $movie = new Movie();
+        
         
         // validações básicas
         if(!empty($title) && !empty($length) && !empty($category) && !empty($trailer) && !empty($description)){
+
+            $movie = new Movie();
+
             // setando os dados no objeto
             $movie->title = $title;
             $movie->length = $length;
             $movie->category = $category;
             $movie->trailer = $title;
             $movie->description = $description;
+            $movie->users_id = $userData->id;// passando o id do usuário que inseriu
 
             // upload de img/chegando o tipo da img
             if(isset($_FILES['image']) && !empty($_FILES['image']['tmp_name'])){
@@ -77,7 +81,6 @@
 
 
             }
-            var_dump($_POST, $_FILES);
 
             // inserindo no banco
             $movieDao->create($movie);
@@ -88,7 +91,8 @@
 
 
     }else{
-        $message->setMessage("Erro: tente novamente", "error", "back");
+        $message->setMessage("", "error", "index.php");
+
    }
    
 
