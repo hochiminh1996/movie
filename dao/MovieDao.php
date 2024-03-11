@@ -39,6 +39,21 @@
 
         // pegar os filmes inseridos mais recentementes : ou seja, decrescente
         public function getLatestMovie(){
+            $movies = []; // array que irá armazenar os resultados obtidos do banco
+
+            $stmt = $this->conn->query("SELECT * FROM movies ORDER BY id desc");
+            $stmt->execute();
+
+            if($stmt->rowCount()>0){
+                $movieArray = $stmt->fetchAll();
+
+                foreach($movieArray as $movie){ 
+                    // movies irá armazenar um array de objetos.
+                    $movies[] = $this->buildMovie($movie);
+                }
+            }
+            return $movies;
+
 
         }
 
@@ -72,7 +87,7 @@
             $stmt->bindParam(":description", $movie->description);
             $stmt->bindParam(":image", $movie->image);
             $stmt->bindParam(":trailer", $movie->trailer);
-            $stmt->bindParam(":category", $movie->title);
+            $stmt->bindParam(":category", $movie->category);
             $stmt->bindParam(":length", $movie->length);
             $stmt->bindParam(":users_id", $movie->users_id);
 
