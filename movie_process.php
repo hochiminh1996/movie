@@ -70,7 +70,14 @@
                     $imageName = $movie->generateImageName();
                     // gerando um novo nome
 
-                    imagejpeg($imageFile, "./image/movies/".$imageName, 100);
+                     // Criar uma nova imagem em branco para a miniatura com as dimensões desejadas (150x150)
+                    $miniatura = imagecreatetruecolor(300, 350);
+
+                    // Redimensionar a imagem original para se ajustar à miniatura
+                    imagecopyresampled($miniatura, $imageFile, 0, 0, 0, 0, 300, 350, imagesx($imageFile), imagesy($imageFile));
+
+                    imagejpeg($miniatura, "./image/movies/". $imageName, 100);
+
 
                     $movie->image = $imageName;//setando o nome da imagem no obj movie
 
