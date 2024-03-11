@@ -53,12 +53,28 @@
                 }
             }
             return $movies;
-
-
         }
 
         // pegar os filmes por categoria
         public function getMoviesByCategory($category){
+            $movies = [];
+
+            $stmt = $this->conn->prepare("SELECT * FROM movies WHERE category=:category ORDER BY id desc");
+            $stmt->bindParam(":category", $category);
+            $stmt->execute();
+
+            if($stmt->rowCount()>0){
+                $movieAction = $stmt->fetchAll();
+                // array que armazenará todos os dados localizados na tabela com base na categoria
+                
+                foreach($movieAction as $m){
+                    $movies[] = $this->buildMovie($m);
+                    // array armazenará os objetos do tipo da categoria de filme (que serão criados com base nos dados passados)
+                }
+            }
+
+            // var_dump($movies);exit;
+            return $movies;//retorna o array de objetos
 
         }
 
