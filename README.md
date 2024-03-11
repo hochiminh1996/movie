@@ -22,4 +22,8 @@ A estrutura de código adota padrões e princípios como MVC, orientação a obj
 
 ![Login/register](https://github.com/hochiminh1996/movie/blob/master/image/profile.png)
 
+<h2>Index: filmes mais recentes que foram adicionados</h2>
+
+![Login/register](https://github.com/hochiminh1996/movie/blob/master/image/index.png)
+
 
