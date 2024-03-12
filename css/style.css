@@ -315,6 +315,11 @@ body {
     margin-top: 30px;
 }
 
+#add-movie-container .card-btn{
+    width: auto;
+    /* border:1px solid red; */
+    
+}
 /* seção new movie */
 .new-movie-container {
     text-align: center;
