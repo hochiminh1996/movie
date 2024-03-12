@@ -345,3 +345,67 @@ body {
     margin: 0 auto;
     padding-top: 5px;
 }
+
+/* dasboard */
+#add-movie-container{
+    text-align: right;
+    /* border:1px solid red; */
+}
+
+#movies-dashboard table{
+    color: #fff;
+}
+
+#movies-dashboard .table th{
+    border:none;
+}
+
+#movies-dashboard .table tr{
+    padding: 15px 0px;
+    /* border:1px solid red; */
+}
+
+.table-movie-title{
+    color: #fff;
+    font-weight: bold;
+}
+
+.actions-column{
+    max-width: 75px;
+    text-align: center;
+    /* border:1px solid red; */
+}
+
+.actions-column form{
+    display: inline-block;
+}
+
+.edit-btn, .delete-btn{
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 0 5px;
+    font-weight: bold;
+    border:none;
+}
+
+.edit-btn{
+    background-color: #000;
+    color: #fff;
+}
+
+.edit-btn:hover{
+    background-color: #0056B3;
+    color: #fff;
+    text-decoration: none;
+}
+
+.delete-btn{
+    background-color: #000;
+    color: #fff;
+}
+
+.delete-btn:hover{
+    background-color: red;
+    color: #fff;
+    text-decoration: none;
+}

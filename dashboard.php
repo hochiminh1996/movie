@@ -28,8 +28,8 @@
             </thead>
 
             <tbody>
-                <tr scope="row">
-                    <td></td>
+                <tr>
+                    <td scope="row"></td>
                     <td><a href="#" class="table-movie-title">Titulo</a></td>
                     <td><i class="fas fa-star"></i> 9</td>
                     <td class="actions-column">
