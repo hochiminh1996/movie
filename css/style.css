@@ -389,23 +389,28 @@ body {
 }
 
 .edit-btn{
-    background-color: #000;
+    background-color: #0056B3;
+    opacity: .8;
     color: #fff;
 }
 
 .edit-btn:hover{
-    background-color: #0056B3;
     color: #fff;
     text-decoration: none;
+    opacity: 1;
+    background-color: #0056B3;
+
 }
 
 .delete-btn{
-    background-color: #000;
     color: #fff;
+    background-color: red;
+    opacity: .8;
 }
 
 .delete-btn:hover{
     background-color: red;
+    opacity: 1;
     color: #fff;
     text-decoration: none;
 }
