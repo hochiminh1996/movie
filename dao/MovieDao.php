@@ -104,7 +104,19 @@
 
         // pegando um filme por id
         public function findById($id){
+            $movie = null;
 
+            $stmt = $this->conn->prepare("SELECT * FROM movies WHERE id =:id");
+            $stmt->bindParam(":id", $id);
+            $stmt->execute();
+
+            if($stmt->rowCount()>0){
+                $m = $stmt->fetch();
+                $movie = $this->buildMovie($m);
+
+                return $movie;
+            }
+           
         }
 
         // pegando um filme por title
