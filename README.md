@@ -26,4 +26,8 @@ A estrutura de código adota padrões e princípios como MVC, orientação a obj
 
 ![Login/register](https://github.com/hochiminh1996/movie/blob/master/image/index.png)
 
+<h2>Dashboard: filmes adicionados por um usuário (há 20 filmes no banco, sendo 6 adicionados pelo usuário)</h2>
+
+![Login/register](https://github.com/hochiminh1996/movie/blob/master/image/dashboard.png)
+
 
