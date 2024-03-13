@@ -80,6 +80,25 @@
 
         // pegar os fillmes de um usuário específico
         public function getMoviesByUserId($id){
+            $arrMovie = [];
+
+            $stmt = $this->conn->prepare("SELECT * FROM movies WHERE users_id=:users_id");
+            $stmt->bindParam(":users_id", $id);
+            $stmt->execute();
+
+            if($stmt->rowCount()>0){
+                $moviesByUser = $stmt->fetchAll();
+                
+                foreach($moviesByUser as $movies){
+                    $arrMovie[] = $this->buildMovie($movies);
+                    // o array irá armanezar uma série de objetos
+                }
+            }else{
+                $arrMovie = null;
+            }
+            return $arrMovie;
+            // retorna o array com os objetos
+
 
         }
 

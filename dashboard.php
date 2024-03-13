@@ -1,13 +1,17 @@
 <?php 
     include_once("templates/header.php");
-    // verificação se usuário está autentificado
     include_once("dao/UserDAO.php");
     include_once("models/User.php");
+    include_once("dao/MovieDao.php");
 
     $userDao = new UserDAO($conn, $BASE_URL);
+    $movieDao = new MovieDao($conn, $BASE_URL);
 
-    $userData = $userDao->verifyToken(true);
+    $userData = $userDao->verifyToken(true);   
     // true porque, se o usuário estiver deslogado, será redirecionado para outra página
+
+    $moviesByIdUser = $movieDao->getMoviesByUserId($userData->id);//retorna um array
+
 ?>
 <div id="main-container" class="container-fluid">
     <h1 class="section-title">Dashboard</h1>
@@ -28,22 +32,34 @@
             </thead>
 
             <tbody>
+                <?php 
+                    foreach($moviesByIdUser as $movie):
+                ?>
                 <tr>
-                    <td scope="row"></td>
-                    <td><a href="#" class="table-movie-title">Titulo</a></td>
+                    <td scope="row"><?=$movie->id?></td>
+                    <td><a href="<?=$BASE_URL?>movie.php?id=<?=$movie->id?>" class="table-movie-title"><?=$movie->title?></a></td>
                     <td><i class="fas fa-star"></i> 9</td>
                     <td class="actions-column">
-                        <a href="" class="edit-btn">
+                        <a href="<?=$BASE_URL?>editmovie.php?id=<?=$movie->id?>" class="edit-btn">
                             <i class="far fa-edit"></i> Editar
                         </a>
                         
-                        <form action="">
+                        <form action="<?=$BASE_URL?>movie_process.php">
+                            <input type="hidden" name="type" value="delete">
+
+                            <!-- passando o id do movie -->
+                            <input type="hidden" name="id" value="<?=$movie->id?>">
+
                             <button type="submit" class="delete-btn">
                                 <i class="fas fa-times"></i> Deletar
                             </button>
                         </form>
                     </td>
                 </tr>
+                <?php 
+                    endforeach;
+                ?>
+                
             </tbody>
         </table>
     </div>
