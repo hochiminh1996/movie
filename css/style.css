@@ -296,8 +296,8 @@ body {
 }
 
 .profile-image-container{
-    width: 90px;
-    height: 95px;
+    width: 80px;
+    height: 85px;
 }
 
 #profile-image-container:hover {
@@ -328,7 +328,6 @@ body {
 /* seção new movie */
 .new-movie-container {
     text-align: center;
-    /* border: 1px solid red; */
 }
 
 #add-movie-form {
@@ -340,6 +339,12 @@ body {
     min-width: 200px;
     background-position: center;
     background-size: cover;
+    /* border-radius: 50%; */
+}
+
+.b-radius{
+    border-radius: 50%;
+    box-shadow: 0px 0px 15px #f5c518;
 }
 
 .page-title::after{
