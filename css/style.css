@@ -283,7 +283,8 @@ body {
 }
 
 /* edição de perfil */
-#profile-image-container {
+#profile-image-container,
+.profile-image-container {
     width: 150px;
     height: 150px;
     border: 6px solid #f5c518;
@@ -292,6 +293,11 @@ body {
     background-position: center center;
     margin: 15px auto;
     opacity: .7;
+}
+
+.profile-image-container{
+    width: 90px;
+    height: 95px;
 }
 
 #profile-image-container:hover {
@@ -412,4 +418,57 @@ body {
     opacity: 1;
     color: #fff;
     text-decoration: none;
+}
+
+/* seção editar movie */
+.movie-container{
+    text-align: center;
+}
+
+.movie-details{
+    margin: 20px 0px;
+    /* border:1px solid red; */
+}
+
+.pipe{
+    border:1px solid #333;
+    margin: 0 10px;
+}
+
+#reviews-title{
+    margin-bottom: 25px;
+}
+
+#review-form-container{
+    background-color: #333;
+    padding: 20px;    
+}
+
+#review-form-container select,
+#review-form-container textarea{
+    width: 50%;
+}
+
+#reviews-container{
+    border-bottom: 1px solid #333;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 4px solid #f5c518;
+}
+
+.review{
+    padding: 20px 0px;
+}
+
+.author-details-container{
+    /* border: 1px solid red; */
+    padding-top: 20px;
+}
+
+.author-name a{
+    color: #f5c518;
+}
+
+.comment-title{
+    color: #999;
 }

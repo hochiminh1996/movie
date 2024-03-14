@@ -72,7 +72,7 @@
             <div class="movie-image-container" style="background-image: url('<?=$BASE_URL?>image/movies/<?=$movie->image?>');"></div>        
         </div>
 
-        <div class="offset-md-1 col-md-10" id="reviws-container">
+        <div class="offset-md-1 col-md-10" id="reviews-container">
             <h3 id="reviews-title">Avaliações</h3>
             
             <!-- VERIFICA SE HABILITA A REVIEW PARA USUÁRIO OU NÃO  -->
