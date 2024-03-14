@@ -44,6 +44,7 @@
     }
 
     // RESGATANDO AS REVIEWS DO FILME
+    $alreadyReview = false;
 ?>
 
 <div id="main-container" class="container-fluid">
@@ -76,6 +77,10 @@
             <h3 id="reviews-title">Avaliações</h3>
             
             <!-- VERIFICA SE HABILITA A REVIEW PARA USUÁRIO OU NÃO  -->
+            <?php 
+                // A review será habilitada se o usuário estiver logado (userData), se ele não for o usuário que inseriu o filme e se ele ainda n fez uma review.
+                if(!empty($userData) && !$userOwnsMovie && !$alreadyReview):
+            ?>
 
             <div class="col-md-12" id="review-form-container">
                 <h4>Envie sua avaliação</h4>
@@ -114,6 +119,7 @@
                 </form>
             </div>
 
+            <?php endif;?>
             <!-- COMENTÁRIOS -->
             <div class="col-md-12 review">
                 <div class="row">

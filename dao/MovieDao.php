@@ -151,8 +151,14 @@
         }
 
         // deletar um filme
-        public function destroy(Movie $movie){
+        public function destroy($id){
+            $stmt = $this->conn->prepare("DELETE FROM movies WHERE id=:id");
+            $stmt->bindParam(":id",$id);
+            $stmt->execute();
 
+            if($stmt->rowCount()>0){
+                $this->message->setMessage("Filme deletado com sucesso", "sucess", "back");
+            }
         }
 
     }

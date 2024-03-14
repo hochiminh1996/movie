@@ -44,7 +44,7 @@
                             <i class="far fa-edit"></i> Editar
                         </a>
                         
-                        <form action="<?=$BASE_URL?>movie_process.php">
+                        <form action="<?=$BASE_URL?>movie_process.php" method="post">
                             <input type="hidden" name="type" value="delete">
 
                             <!-- passando o id do movie -->

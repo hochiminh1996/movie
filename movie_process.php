@@ -27,7 +27,7 @@
     // verificando se há uma sessão de token
 
     // analisando o campo hidden
-    if(filter_input(INPUT_POST, 'type')  == "create"){
+    if(filter_input(INPUT_POST, 'type')  === "create"){
         // dados de entrada do movie
         $title = filter_input(INPUT_POST, "title");
         $length = filter_input(INPUT_POST, "length");
@@ -97,7 +97,27 @@
 
 
 
-    }else{
+    }else if(filter_input(INPUT_POST, 'type') === "delete"){
+        $id = filter_input(INPUT_POST, 'id');
+
+        $movie = $movieDao->findById($id);
+
+        if($movie){
+            // verificando se o filme é do usuário
+
+           
+            
+            if($movie->users_id === $userData->id){
+                // o filme é do usuário
+                $movieDao->destroy($movie->id);
+            }else{
+                $message->setMessage("Informações inválidas", "error", "index.php");
+            }
+        }else{
+            $message->setMessage("Informações inválidas", "error", "index.php");
+        }
+    }
+    else{
         $message->setMessage("", "error", "index.php");
 
    }
