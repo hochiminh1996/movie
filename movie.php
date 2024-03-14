@@ -65,8 +65,7 @@
             <iframe width="560" height="315" src="<?= $movie->trailer ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
             <p><?=$movie->description?></p>
-         
-
+        
         </div>
 
         <div class="col-md-4">

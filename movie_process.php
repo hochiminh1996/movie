@@ -103,10 +103,7 @@
         $movie = $movieDao->findById($id);
 
         if($movie){
-            // verificando se o filme é do usuário
-
-           
-            
+            // verificando se o filme é do usuário. Se for, é possível deletar. Caso contrário, erro.
             if($movie->users_id === $userData->id){
                 // o filme é do usuário
                 $movieDao->destroy($movie->id);

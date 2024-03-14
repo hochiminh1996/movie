@@ -31,6 +31,10 @@
                 <th scope="col" class="actions-column">Ações</th>
             </thead>
 
+            <?php 
+                // se o array for diferente de null ele irá exibir os dados. Caso contrário, não exibira nada. Evitando erro no foreach com array vazio
+                if($moviesByIdUser!=null):
+            ?>
             <tbody>
                 <?php 
                     foreach($moviesByIdUser as $movie):
@@ -61,6 +65,10 @@
                 ?>
                 
             </tbody>
+
+            <?php 
+                endif;
+            ?>
         </table>
     </div>
 </div>
