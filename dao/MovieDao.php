@@ -147,6 +147,22 @@
         
         // atualizando um filme
         public function update(Movie $movie){
+            $stmt = $this->conn->prepare("UPDATE movies SET title=:title, description=:description, image=:image, trailer=:trailer, category=:category, length=:length where id=:id");
+
+            $stmt->bindParam(":title", $movie->title);
+            $stmt->bindParam(":description", $movie->description);
+            $stmt->bindParam(":image", $movie->image);
+            $stmt->bindParam(":trailer", $movie->trailer);
+            $stmt->bindParam(":category", $movie->category);
+            $stmt->bindParam(":length", $movie->length);
+            $stmt->bindParam(":id", $movie->id);
+            $stmt->execute();
+
+            if($stmt->rowCount()>0){
+                $this->message->setMessage("Atualização realizada com sucesso", "sucess", "back");
+            }else{
+                $this->message->setMessage("Houve um erro. Tente novamente", "error", "dashboard.php");
+            }  
 
         }
 

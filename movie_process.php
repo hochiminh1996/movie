@@ -26,7 +26,7 @@
     $userData = $userDao->verifyToken(true);
     // verificando se há uma sessão de token
 
-    // analisando o campo hidden
+    // analisando o campo hidden. registrar um filme
     if(filter_input(INPUT_POST, 'type')  === "create"){
         // dados de entrada do movie
         $title = filter_input(INPUT_POST, "title");
@@ -97,7 +97,7 @@
 
 
 
-    }else if(filter_input(INPUT_POST, 'type') === "delete"){
+    }else if(filter_input(INPUT_POST, 'type') === "delete"){//deletando um filme
         $id = filter_input(INPUT_POST, 'id');
 
         $movie = $movieDao->findById($id);
@@ -112,6 +112,67 @@
             }
         }else{
             $message->setMessage("Informações inválidas", "error", "index.php");
+        }
+    }else if(filter_input(INPUT_POST, 'type') === "update"){//atualizando um filme
+      
+       $id = filter_input(INPUT_POST, "id");
+       $title = filter_input(INPUT_POST, "title");
+       $length = filter_input(INPUT_POST, "length");
+       $category = filter_input(INPUT_POST, "category");
+       $trailer = filter_input(INPUT_POST, "trailer");
+       $description = filter_input(INPUT_POST, "description");
+
+       $movieData = $movieDao->findById($id);
+
+    // se vier um filme
+        if($movieData){
+             // validações básicas
+            if(!empty($title) && !empty($length) && !empty($category) && !empty($trailer) && !empty($description)){
+                // reaproveitando o $moviedata que retorna um objeto. No caso, setamos os dados de entrada nele
+
+                $movieData->id =  $id;
+                $movieData->title = $title;
+                $movieData->length = $length;
+                $movieData->category = $category;
+                $movieData->trailer = $trailer;
+                $movieData->description = $description;
+
+                // validando se há dados de img na superglobal files
+                if(isset($_FILES['image']) && !empty($_FILES['image']['tmp_name'])){
+                    $imagem = $_FILES['image'];
+                    $imgTypes = ['image/png', 'image/jpeg', 'image/jpg'];//tipos permitidos
+                    $imgJpges = ['image/jpeg', 'image/jpg'];
+
+                    if(in_array($imagem['type'], $imgTypes)){
+                        // verificando se um dos 3 tipos de imagens permitidas
+                        if(in_array($imagem['type'], $imgJpges)){
+                            // a imagem é jpg ou jpeg
+                            $newimage = imagecreatefromjpeg($imagem['tmp_name']);
+                            // uma copia da image
+
+                        }else{
+                            // siginifica que é png
+                            $newimage = imagecreatefrompng($imagem['tmp_name']);
+                        }
+
+                        // gerando um nome de img
+                        $movie = new Movie();
+                        $imageName = $movie->generateImageName();
+                        $movieData->image = $imageName;
+                        
+                        imagejpeg($newimage, "./image/movies/". $imageName, 100);
+
+                    }
+                    
+
+                }
+                // atualizando o filme 
+                $movieDao->update($movieData);
+
+
+            }else{
+                $message->setMessage("Preencha todos os campos", "error", "back");
+            }
         }
     }
     else{

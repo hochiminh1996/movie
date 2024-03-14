@@ -17,9 +17,7 @@
     }else{
         $movie = $movieDao->findById(filter_input(INPUT_GET, 'id'));
 
-        if($movie->users_id === $userData->id){
-            // evitando que o usuário tente editar um filme que não é dele. I
-        }else{
+        if($movie->users_id !== $userData->id){
             $message->setMessage("Filme não localizado...", "error", "dashboard.php");
         }
     }
@@ -82,7 +80,7 @@
                     <textarea name="description" id="description" rows="5" placeholder="Adicione a descrição" class="form-control"><?=$movie->description?></textarea>
                 </div>
 
-                <input type="submit" class="btn card-btn" value="Adicionar filme">
+                <input type="submit" class="btn card-btn" value="Atualizar filme">
 
                 </form>
             </div>
