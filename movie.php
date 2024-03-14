@@ -69,7 +69,7 @@
         </div>
 
         <div class="col-md-4">
-            <div class="movie-image-container b-radius" style="background-image: url('<?=$BASE_URL?>image/movies/<?=$movie->image?>');"></div>        
+            <div class="movie-image-container" style="background-image: url('<?=$BASE_URL?>image/movies/<?=$movie->image?>');"></div>        
         </div>
 
         <div class="offset-md-1 col-md-10" id="reviews-container">

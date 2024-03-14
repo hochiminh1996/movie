@@ -88,7 +88,7 @@
             </div>
 
             <div class="col-md-3">
-                <div class="movie-image-container2" style="background-image: url('<?=$BASE_URL?>image/movies/<?=$movie->image?>');"></div>
+                <div class="movie-image-container" style="background-image: url('<?=$BASE_URL?>image/movies/<?=$movie->image?>');"></div>
             </div>
         </div>
     </div>
