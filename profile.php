@@ -14,9 +14,11 @@
 
     // observação : o userData está vindo do header
     if(empty($id)){
-        // se não vier nada do get, iremos atribuir o id do usuário logado
+        // se não vier nada do get, iremos atribuir o id do usuário logado. O html irá mostrar o perfil do usuário que estiver logado, com base no userData e seus dados
         if(!empty($userData->id)){// Se a propr id do obj não estiver vazio.
             $id = $userData->id;// setando o valor do id do obj na variável. Ou seja, do proprio perfil de quem estiver logado.
+
+
         }else{
             // se não tiver id, e não tiver usuário, lançar erro. Não logado
             $message->setMessage("Usuário não encontrado", "error", "index.php");
@@ -25,7 +27,6 @@
         // se vier um id 
         $userData = $userDao->findById($id);
         // buscando os dados por id: retorna um objeto
-
 
         // se não localizar o usuário
         if(!$userData){
@@ -73,8 +74,8 @@
                 <?php endif;?>    
             </div>
 
-            <div class="col-md-12">
-                <div class="col-md-12 added-movies-container">
+        
+            <div class="col-md-12 added-movies-container">
                     <h3>Filmes inseridos por <?=$userData->name?></h3>
                     
                     <!-- se naõ tiver movies -->
@@ -91,10 +92,8 @@
                     ?>
 
                         <?php endforeach?>
-
                     <?php endif?>
                     
-                </div>
             </div>
         </div>
     </div>
