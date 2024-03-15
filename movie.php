@@ -84,7 +84,7 @@
             <div class="col-md-12" id="review-form-container">
                 <h4>Envie sua avaliação</h4>
                 <p class="page-description">Preencha o formulário com a nota e comentário sobre o filme: </p>
-
+                <!-- REVIEW QUE SERÁ REALIZADO PELO USUÁRIO -->
                 <form action="<?=$BASE_URL?>review_process.php" method="POST" enctype="multipart/form-data" id="review-form">
                     <input type="hidden" name="type" value="create">
                     <!-- campo oculto para validar  -->

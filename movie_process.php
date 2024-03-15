@@ -1,5 +1,7 @@
-<?php 
+<!-- ADICIONAR UM FILME, ATUALIZAR UM FILME, EXCLUIR UM FILME  -->
 
+<?php 
+    
     require_once("db.php");
     // incluindo banco
     
