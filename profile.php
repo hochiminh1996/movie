@@ -53,10 +53,10 @@
 <div id="main-container" class="container-fluid">
     <div class="col-md-8 offset-md-2">
         <div class="row profile-container">
-            <div class="col-md-12">
+            <div class="col-md-12 about-container">
                 <h1 class="page-title"><?=$fullName?></h1>
 
-                <div id="profile-image-container" style="background-image: url(<?=$BASE_URL?>image/users/<?=$userData->image?>);">
+                <div id="profile-image-container" class="profile-image" style="background-image: url(<?=$BASE_URL?>image/users/<?=$userData->image?>);">
                 </div>
 
                 <h3 class="about-title">Sobre:</h3>
@@ -76,8 +76,8 @@
 
         
             <div class="col-md-12 added-movies-container">
-                    <h3>Filmes inseridos por <?=$userData->name?></h3>
-                    
+                <h3>Filmes inseridos por <?=$userData->name?></h3>
+                <div class="movies-container">
                     <!-- se naõ tiver movies -->
                     <?php if($userMovies == null):?>
                     <p class="empty-list">Usuário não adicionou nenhum filme.</p>
@@ -93,7 +93,7 @@
 
                         <?php endforeach?>
                     <?php endif?>
-                    
+                </div>                    
             </div>
         </div>
     </div>
