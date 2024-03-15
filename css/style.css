@@ -446,6 +446,14 @@ body {
     /* border:1px solid red; */
 }
 
+/* iframe */
+.iframe-video{
+    border:1px solid #ccc;
+    background-image: url("../image/movies/movie_cover.jpg");
+    background-position: center;
+    border-radius: 4px;
+}
+
 .pipe{
     border:1px solid #333;
     margin: 0 10px;

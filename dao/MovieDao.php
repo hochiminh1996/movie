@@ -159,7 +159,7 @@
             $stmt->execute();
 
             if($stmt->rowCount()>0){
-                $this->message->setMessage("Atualização realizada com sucesso", "sucess", "back");
+                $this->message->setMessage("Atualização realizada com sucesso", "sucess", "dashboard.php");
             }else{
                 $this->message->setMessage("Houve um erro. Tente novamente", "error", "dashboard.php");
             }  
