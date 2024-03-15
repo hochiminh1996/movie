@@ -17,9 +17,13 @@
     require_once("dao/UserDAO.php");
     // incluindo a abstração de acesso/persistência de dados : user
 
+    require_once("dao/ReviewDao.php");
+    require_once("models/Review.php");
+
     $message = new Message($BASE_URL);
     $movieDao = new MovieDao($conn, $BASE_URL);
     $userDao = new UserDAO($conn, $BASE_URL);
+    $reviewDao = new ReviewDao($conn, $BASE_URL);
 
     $userData = $userDao->verifyToken(true);
     // verificando se há uma sessão de token
@@ -29,6 +33,7 @@
         $rating = filter_input(INPUT_POST, "rating");
         $review = filter_input(INPUT_POST, "review");
 
+        
         
     }
 ?>

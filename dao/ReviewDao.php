@@ -3,6 +3,8 @@
 <?php 
     include_once("models/Review.php");
     include_once("models/Message.php");
+    
+    include_once("dao/UserDAO.php");
 
     class ReviewDao implements ReviewDaoInterface{
         private $conn;
@@ -18,7 +20,15 @@
 
         // construindo o objeto review
         public function buildReview($data){
+            $reviewObject = new Review();
             
+            $reviewObject->id = $data['id'];
+            $reviewObject->rating = $data['rating'];
+            $reviewObject->review = $data['review'];
+            $reviewObject->users_id = $data['users_id'];
+            $reviewObject->movies_id = $data['movies_id'];
+
+            return $reviewObject;
         }
 
         // criar um review 
