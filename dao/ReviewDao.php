@@ -86,6 +86,7 @@
         }
 
         // verificando se o user já fez uma review
+        // Só pode realizar uma review quem não adicionou o filme a ser comentado, não fez nenhuma review e está logado
         public function hasAlreadyReviewed($id, $userId){
             $stmt = $this->conn->prepare("SELECT * FROM reviews WHERE movies_id=:movies_id AND users_id=:users_id");
             $stmt->bindParam(":movies_id", $id);

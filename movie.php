@@ -19,6 +19,12 @@
         // verificando se o filme existe por id
         $movie = $movieDao->findById($id);
         
+        // pega o id do usuário que adicionou o filme da tabela movie
+        $userId = $movie->users_id;
+
+        // retorna um objeto de user que criou o filme. Iremos usar lá no autor
+        $objUser = $userDao->findById($userId);
+        
         if($movie == null){
             $message->setMessage("Null: Filme não localizado", "error", "index.php");
         }
@@ -47,7 +53,7 @@
 
         // Verificando se o usuário já realizou uma review
         $alreadyReview = $reviewDao->hasAlreadyReviewed($id, $userData->id);
-        // var_dump($alreadyReview);exit;
+        // Se alreadyReview vier true, significa que esse usuário já fez uma review e não pode adicionar outra. Se vier false, significa que é possível realizar uma avaliação (claro terá que passar pelos outros critérios : não ser o proprietário do filme, estar logado e n ter adicionado review)
 
     }
 
@@ -69,6 +75,10 @@
                 <span class="pipe"></span>
 
                 <span><i class="fas fa-star"></i> 9</span>
+                <span class="pipe"></span>
+
+                <span>Autor: <a href="<?=$BASE_URL?>profile.php?id=<?=$objUser->id?>"><?=$objUser->name?></a></span>
+
             </p>
 
          
@@ -146,9 +156,6 @@
                 <p class="empty-list">Não há reviews neste filme...</p>
             <?php endif?>   
             
-
-            
-
         </div>
     </div>
 </div>
