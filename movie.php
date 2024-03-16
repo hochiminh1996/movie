@@ -44,13 +44,17 @@
             // verificando se o id do usuário é igual ao id do usuário que adicionou o filme. Ou seja, foi ele que adicionou.
             $userOwnsMovie = TRUE;
         }
+
+        // Verificando se o usuário já realizou uma review
+        $alreadyReview = $reviewDao->hasAlreadyReviewed($id, $userData->id);
+        // var_dump($alreadyReview);exit;
+
     }
 
-    // ARRAY QUE CONTÉM RESGATA TODAS AS REVIEWS
+    // ARRAY QUE  RESGATA TODAS AS REVIEWS
     $moviesReview = $reviewDao->getMoviesReview($id);
 
-    // RESGATANDO AS REVIEWS DO FILME
-    $alreadyReview = false;
+    
 ?>
 
 <div id="main-container" class="container-fluid">
