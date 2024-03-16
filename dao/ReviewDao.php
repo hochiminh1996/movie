@@ -102,6 +102,22 @@
 
         // buscando todas as notas de um filme
         public function getRating($id){
+            $stmt = $this->conn->prepare("SELECT rating FROM reviews WHERE movies_id =:movies_id");
+            $stmt->bindParam(":movies_id", $id);
+            $stmt->execute();
+            
+            
+            if($stmt->rowCount()>0){
+                $soma=0;
+                $ratings = $stmt->fetchAll();
+                
+                foreach($ratings as $r){
+                   $soma+= $r['rating'];
+                }
+                return number_format($soma / count($ratings),2);
+            }else{
+                return "Não avaliado";
+            }
             
         }
     }

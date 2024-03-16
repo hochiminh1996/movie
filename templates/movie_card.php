@@ -18,7 +18,7 @@
             <i class="fas fa-star"></i>
             <!-- icone de estrela -->
 
-            <span class="rating">9</span>
+            <span class="rating"><?=$movie->rating?></span>
             <!-- nota -->
         </p>
 

@@ -1,6 +1,7 @@
 <?php 
     include_once("models/Movie.php");//nossa classe principal
     include_once("models/Message.php");// classe voltada para mensagens de erro
+    include_once("dao/ReviewDao.php");
 
     class MovieDao implements MovieDaoInterface{
         // construindo um objeto de movie com base nos dados recebidos
@@ -28,6 +29,15 @@
             $movie->category = $data['category'];
             $movie->length = $data['length'];
             $movie->users_id = $data['users_id'];
+
+            // receba as ratings/nota do filme
+            $reviewDao = new ReviewDao($this->conn, $this->url);
+
+            $rating = $reviewDao->getRating($movie->id);
+
+            // criando uma propriedade nova no obj movie que irá armazenar a média da nota do filme
+            $movie->rating = $rating;
+            // o objeto do filme já irá com a nota
 
             return $movie;
         }

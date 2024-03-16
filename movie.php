@@ -60,6 +60,8 @@
     // ARRAY QUE  RESGATA TODAS AS REVIEWS
     $moviesReview = $reviewDao->getMoviesReview($id);
 
+    // realiza o calculo da nota com base no id
+    $ratingMovie = $reviewDao->getRating($id);
     
 ?>
 
@@ -74,7 +76,7 @@
                 <span><?=$movie->category?></span>
                 <span class="pipe"></span>
 
-                <span><i class="fas fa-star"></i> 9</span>
+                <span><i class="fas fa-star"></i> <?=$movie->rating?></span>
                 <span class="pipe"></span>
 
                 <span>Autor: <a href="<?=$BASE_URL?>profile.php?id=<?=$objUser->id?>"><?=$objUser->name?></a></span>
