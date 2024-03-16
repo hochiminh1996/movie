@@ -51,7 +51,21 @@
 
         // retorna todos os review de um filme por id
         public function getMoviesReview($id){
-            
+            $comment = [];//array com as reviews
+            $stmt = $this->conn->prepare("SELECT * FROM reviews WHERE movies_id=:movies_id ORDER BY id DESC");
+            $stmt->bindParam("movies_id", $id);
+            $stmt->execute();
+
+            if($stmt->rowCount()>0){
+                $reviewMovies = $stmt->fetchAll();
+
+                foreach($reviewMovies as $reviews){
+                    $comment[] = $this->buildReview($reviews);
+                    // um array que irá armazenar vários objetos de review
+                }
+            }
+            return $comment;//retorna um array de objetos
+
         }
 
         // verificando se o user já fez uma review

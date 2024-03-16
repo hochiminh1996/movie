@@ -4,12 +4,15 @@
     // verificação se usuário está autentificado
     include_once("dao/MovieDao.php");
     include_once("models/Movie.php");
+    include_once("dao/ReviewDao.php");
+
 
 
     // pegar o id do filme
     $id = filter_input(INPUT_GET, "id");
 
     $movie;
+    $reviewDao = new ReviewDao($conn, $BASE_URL);
 
     if(!empty($id)){
         $movieDao = new MovieDao($conn, $BASE_URL);
@@ -42,6 +45,9 @@
             $userOwnsMovie = TRUE;
         }
     }
+
+    // ARRAY QUE CONTÉM RESGATA TODAS AS REVIEWS
+    $moviesReview = $reviewDao->getMoviesReview($id);
 
     // RESGATANDO AS REVIEWS DO FILME
     $alreadyReview = false;
@@ -119,26 +125,25 @@
             </div>
 
             <?php endif;?>
-            <!-- COMENTÁRIOS -->
-            <div class="col-md-12 review">
-                <div class="row">
-                    <!-- icone de imagem do user -->
-                    <div class="col-md-1">
-                        <div class="profile-image-container review-imagem" style="background-image: url('<?=$BASE_URL?>image/users/user.png');"></div>
-                    </div>
+            
+            <!-- SE HOUVER COMENTÁRIOS -->
+            <?php if(count($moviesReview) > 0):?>
+                <!-- PERCORRE O ARRAY COM AS REVIEWS -->
+                <?php 
+                    foreach($moviesReview as $review):
+                ?>
+                <?php 
+                    require("templates/user_review.php");
+                ?>
+                <?php endforeach;?>
+            <?php else:?>
+                <!-- SE NÃO TIVER REVIEWS -->
+                <p class="empty-list">Não há reviews neste filme...</p>
+            <?php endif?>   
+            
 
-                    <div class="col-md-9 author-details-container">
-                        <h4 class="author-name"><a href="">Felippe</a></h4>
-                        <p><i class="fas fa-star"></i> 9</p>
-                    </div>
+            
 
-                    <div class="col-md-12">
-                        <p class="comment-title">Comentário:</p>
-
-                        <p>Comentário do suuaasd</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>

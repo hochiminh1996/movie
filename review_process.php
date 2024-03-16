@@ -48,6 +48,7 @@
                 $reviewObject->movies_id = $movies_id;
                 $reviewObject->users_id = $userData->id;
 
+                // colocando no banco
                 $reviewDao->create($reviewObject);
             }else{
                 $message->setMessage("Preencha nota e comentário", "error", "back");                
