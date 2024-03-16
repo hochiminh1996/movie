@@ -58,12 +58,29 @@
 
             if($stmt->rowCount()>0){
                 $reviewMovies = $stmt->fetchAll();
+                
+                $userDao = new UserDAO($this->conn, $this->url);
+                // chamando o dao para buscar os dados do usuário que adicionou o filme
 
                 foreach($reviewMovies as $reviews){
-                    $comment[] = $this->buildReview($reviews);
-                    // um array que irá armazenar vários objetos de review
+
+                    $reviewObject = $this->buildReview($reviews);
+                    // reviewObject armazena um objeto. Observe q estamos criando um objeto partir de dados de um array
+                    
+                    // Buscando os dados do usuário que adicionou o review
+                    $user = $userDao->findById($reviewObject->users_id);
+
+
+                    $reviewObject->user = $user;
+                    // Foi criado uma prop. em reviewObject (->user) que irá armazenar o objeto do usuário que adicionou o filme
+                   
+
+                    $comment[] = $reviewObject;
+                    // um array que irá armazenar vários objetos de review, além de uma prop. que irá conter os dados do usuário que fez o review
                 }
             }
+
+            // var_dump($comment);exit;
             return $comment;//retorna um array de objetos
 
         }

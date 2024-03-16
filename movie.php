@@ -28,7 +28,7 @@
     }
 
     // VERIFICANDO SE O FILME TEM IMAGEM
-    if($movie->image == ""){
+    if($movie->image == "" || $movie->image == NULL){
         $movie->image = "movie_cover.jpg";
     }
 
@@ -132,6 +132,7 @@
                 <?php 
                     foreach($moviesReview as $review):
                 ?>
+                <!-- template de review -->
                 <?php 
                     require("templates/user_review.php");
                 ?>
