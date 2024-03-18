@@ -41,4 +41,4 @@ A estrutura de código adota padrões e princípios como MVC, orientação a obj
 
 <h2>Busca</h2>
 
-![Login/register](https://github.com/hochiminh1996/movie/blob/master/image/busca.png)
+![Login/register](https://github.com/hochiminh1996/movie/blob/master/image/busca1.png)
