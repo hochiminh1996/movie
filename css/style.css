@@ -187,6 +187,19 @@ body {
     font-weight: bold;
 }
 
+.empty-list a{
+    color: #f5c518;
+    text-decoration: none;
+}
+
+.empty-list::after{
+    content: "";
+    display: block;
+    border: 2px solid #f5c518;
+    width: 19%;
+    margin: 0 auto;
+}
+
 /* login/register */
 #auth-row {
     justify-content: space-evenly;
@@ -531,4 +544,13 @@ body {
 
 .added-movies-container .movie-card{
     width: 31%;
+}
+
+#search-result{
+    color:#f5c518
+}
+
+#search-result a{
+    border:1px solid red;
+    color: #f5c518;
 }
