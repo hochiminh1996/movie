@@ -110,11 +110,12 @@
             if($stmt->rowCount()>0){
                 $soma=0;
                 $ratings = $stmt->fetchAll();
+
+                $sum = array_column($ratings, "rating");//pegando a coluna de rating das avaliações;
+
+                return number_format(array_sum($sum) / count($sum), 2);
+                // formata a nota, soma todas as notas e divide pela quantidade de array
                 
-                foreach($ratings as $r){
-                   $soma+= $r['rating'];
-                }
-                return number_format($soma / count($ratings),2);
             }else{
                 return "Não avaliado";
             }
