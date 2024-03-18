@@ -131,6 +131,25 @@
 
         // pegando um filme por title
         public function findByTitle($title){
+            $title = strtolower($title);
+            $stmt = $this->conn->prepare("SELECT * FROM movies WHERE title LIKE :title");
+            // O operador LIKE é usado em consultas SQL para buscar padrões em dados de texto. Ele permite que você busque por valores que correspondam a um padrão especificado, onde o caractere % representa zero, um ou vários caracteres, e _ representa um único caractere.
+
+
+            $stmt->bindValue(":title", '%'. $title.'%');// TRACAMOS O BINDPARAM PARA BINDVALUE QUE ACEITA A MODIFICAÇÃO DE STRING COM  OS OPRADORES DE SQL %
+            //O operador % no SQL, quando usado com o comando LIKE, permite a busca de padrões em qualquer posição dentro de uma string. Por exemplo, ao pesquisar o título "TROPA DE ELITE", se o usuário inserir "elite", "tropa" ou "de", o LIKE será capaz de localizar a string correspondente, independentemente da posição em que esses padrões aparecem na sequência de caracteres. 
+
+            $stmt->execute();
+
+            $movies = [];
+            if($stmt->rowCount()>0){
+                $moviesObject = $stmt->fetchAll();
+                
+                foreach($moviesObject as $m){
+                    $movies[] = $this->buildMovie($m);
+                }
+            }
+            return $movies;
 
         }
 
